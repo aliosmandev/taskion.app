@@ -1,6 +1,6 @@
-# new-ui
+# QuickNotion
 
-An Electron application with React and TypeScript
+QuickNotion is a desktop application that allows you to quickly access your Notion pages. It is built using Electron and Vite, and is designed to be fast and efficient. The application is written in TypeScript and uses React for the user interface.
 
 ## Recommended IDE Setup
 

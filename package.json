@@ -1,9 +1,9 @@
 {
-  "name": "new-ui",
+  "name": "quick-notion",
   "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "description": "QuickNotion is a desktop application that allows you to quickly access your Notion pages.",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "contact@aliosman.me",
   "homepage": "./",
   "scripts": {
     "format": "prettier --write .",
