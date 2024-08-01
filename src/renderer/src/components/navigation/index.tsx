@@ -75,7 +75,12 @@ export const NavigationBar = () => {
     return [shortPages, longPages]
   }, [computedPages, currentPage, activePages])
 
-  const hasLongPages = longPages.length > 0
+  const filteredPages = useMemo(() => {
+    return activePages
+      .filter((page) => !shortPages.some((p) => p.id === page))
+      .map((page) => longPages.find((p) => p.id === page))
+      .filter((page) => page !== undefined)
+  }, [activePages, longPages, shortPages])
 
   const isScrolled = useMemo(() => (window.y as number) > 10, [window])
 
@@ -131,7 +136,7 @@ export const NavigationBar = () => {
             </Chip>
           </Tooltip>
         ))}
-        {shortPages.length > 0 && hasLongPages && (
+        {activePages.length > 3 && (
           <Dropdown>
             <DropdownTrigger>
               <Chip size="sm" variant="flat" radius="sm" className="cursor-pointer">
@@ -139,7 +144,7 @@ export const NavigationBar = () => {
               </Chip>
             </DropdownTrigger>
             <DropdownMenu>
-              {longPages?.map((page) => (
+              {filteredPages?.map((page) => (
                 <DropdownItem
                   key={page.id}
                   onClick={() => handleSelectPage(page.id)}

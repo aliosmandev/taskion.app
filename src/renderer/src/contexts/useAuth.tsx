@@ -1,7 +1,9 @@
+/* eslint-disable no-async-promise-executor */
 import { getAuthMe } from '@renderer/libs/api/auth'
 import { setAuthToken } from '@renderer/libs/api/instance'
 import { UserResult } from '@renderer/libs/types/api/user'
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 interface AuthContextType {
   loading: boolean
@@ -23,6 +25,39 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [loggedIn, setLoggedIn] = useState<boolean>(false)
   const [token, setToken] = useState<string | null>(null)
   const [user, setUser] = useState<UserResult | null>(null)
+
+  const getUserWithCode = (authCode: string) =>
+    new Promise(async (resolve, reject) => {
+      setAuthToken(authCode)
+      setLoading(true)
+      try {
+        const userResponse = await getAuthMe()
+        if (userResponse.results[0].name) {
+          localStorage.setItem('access_token', authCode)
+          setLoading(false)
+          setLoggedIn(true)
+          setUser(userResponse.results[0])
+          resolve(userResponse.results[0])
+        }
+      } catch (error) {
+        setLoading(false)
+        reject(error)
+      }
+    })
+
+  useEffect(() => {
+    window.electron.ipcRenderer.on('oauth-code', async (_event, authCode) => {
+      toast.promise(getUserWithCode(authCode), {
+        loading: 'Loading...',
+        success: 'User fetched successfully!',
+        error: 'User fetch failed!'
+      })
+    })
+
+    return () => {
+      window.electron.ipcRenderer.removeAllListeners('oauth-code')
+    }
+  }, [])
 
   const handleGetUser = async () => {
     setLoading(true)

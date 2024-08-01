@@ -1,5 +1,5 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import { menubar } from 'menubar'
 import { join } from 'path'
 import { INDEX_HTML_PATH } from './constants'
@@ -33,14 +33,15 @@ function createWindow(): void {
     addContextmenu(mb)
   })
 
-  // mb.on('after-create-window', () => {
-  //   const loadURL =
-  //     is.dev && process.env['ELECTRON_RENDERER_URL']
-  //       ? process.env['ELECTRON_RENDERER_URL']
-  //       : INDEX_HTML_PATH
+  app.on('open-url', (event, url) => {
+    event.preventDefault()
+    const authCode = new URL(url).searchParams.get('accessToken')
 
-  //   mb.window?.loadURL(loadURL)
-  // })
+    if (authCode) {
+      mb.showWindow()
+      mb.window?.webContents.send('oauth-code', authCode)
+    }
+  })
 }
 
 // This method will be called when Electron has finished
@@ -56,12 +57,18 @@ app.whenReady().then(() => {
 
   ipcMain.on('ping', () => console.log('pong'))
 
+  ipcMain.on('open-url', (_, url: string) => {
+    shell.openExternal(url)
+  })
+
   createWindow()
 
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 })
+
+app.setAsDefaultProtocolClient('quicknotion')
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

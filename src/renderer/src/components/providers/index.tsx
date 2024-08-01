@@ -1,6 +1,7 @@
 import AuthProvider from '@renderer/contexts/useAuth'
 import PagesProvider from '@renderer/contexts/usePages'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { Toaster } from 'sonner'
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   const queryClient = new QueryClient({
@@ -15,6 +16,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster position="bottom-center" richColors />
       <AuthProvider>
         <PagesProvider>{children}</PagesProvider>
       </AuthProvider>

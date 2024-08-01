@@ -11,13 +11,9 @@ export const AuthCheck = () => {
 
   useEffect(() => {
     if (!loading && !loggedIn) {
-      console.log('buraya geliyor bu')
-
       navigate('/login')
     } else if (!loading && loggedIn) {
       if (location.pathname === '/login') {
-        console.log('bu atıyor')
-
         navigate('/')
       }
     }

@@ -6,7 +6,8 @@ export const Login = () => {
   const apiUrl = import.meta.env.VITE_PUBLIC_API_URL
 
   const handleLogin = () => {
-    window.location.href = apiUrl + '/auth/authorize'
+    // window.location.href = apiUrl + '/auth/authorize'
+    window.electron.ipcRenderer.send('open-url', apiUrl + '/auth/authorize')
   }
 
   return (

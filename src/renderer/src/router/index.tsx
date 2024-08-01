@@ -2,9 +2,9 @@ import { AuthCheck } from '@renderer/components/auth-check'
 import { Callback } from '@renderer/pages/Callback'
 import { Home } from '@renderer/pages/Home'
 import { Login } from '@renderer/pages/Login'
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
 
-export const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
+export const router: ReturnType<typeof createHashRouter> = createHashRouter([
   {
     path: '/',
     element: <AuthCheck />,

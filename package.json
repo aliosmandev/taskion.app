@@ -33,7 +33,8 @@
     "menubar": "^9.5.0",
     "react-icons": "^5.2.1",
     "react-query": "^3.39.3",
-    "react-router-dom": "^6.26.0"
+    "react-router-dom": "^6.26.0",
+    "sonner": "^1.5.0"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",

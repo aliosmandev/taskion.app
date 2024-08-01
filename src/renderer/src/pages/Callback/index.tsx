@@ -10,7 +10,6 @@ export const Callback = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [searchParams] = useSearchParams()
   const accessToken = searchParams.get('accessToken')
-  console.log('test, selam')
 
   const getUser = async () => {
     if (accessToken) {

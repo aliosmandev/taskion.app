@@ -1,7 +1,7 @@
-import { PublicNavigation } from '@renderer/components/public-navigation'
-import usePreferences from '@renderer/contexts/usePreferences'
 import { Button, Select, SelectItem } from '@nextui-org/react'
 import { Separator } from '@radix-ui/react-context-menu'
+import { PublicNavigation } from '@renderer/components/public-navigation'
+import usePreferences from '@renderer/contexts/usePreferences'
 
 const fontSizes = [
   {
