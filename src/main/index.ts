@@ -16,15 +16,16 @@ function createWindow(): void {
       fullscreenable: false,
       resizable: false,
       backgroundColor: '#FFFFFF',
-      width: 500,
-      height: 600,
+      width: 1000,
+      height: 6000,
       minWidth: 300,
       maxHeight: 900,
       minHeight: 600,
       webPreferences: {
         backgroundThrottling: false,
         preload: join(__dirname, '../preload/index.js'),
-        sandbox: false
+        sandbox: false,
+        devTools: true
       }
     }
   })
