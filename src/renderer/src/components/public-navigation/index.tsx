@@ -5,7 +5,7 @@ export const PublicNavigation = () => {
   return (
     <div className="flex flex-wrap justify-between items-center border-zinc-100 dark:border-zinc-900 p-3 border-b w-full">
       <Link to="/">
-        <img src={Logo} alt="logo" className="w-5 h-5" />
+        <img src={Logo} alt="logo" className="w-8 h-8" />
       </Link>
       {/* <div className="flex gap-x-1">
         <ChevronLeft className="cursor-pointer w-4 h-4 text-zinc-500" />
