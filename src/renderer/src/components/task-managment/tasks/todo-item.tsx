@@ -42,7 +42,7 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
           rich_text: [
             {
               text: {
-                content: content || block.to_do?.rich_text[0].plain_text,
+                content: content || block.to_do?.rich_text[0]?.plain_text,
                 link: ''
               }
             }

@@ -21,7 +21,7 @@ export const PageRenderer = () => {
       const { to_do } = block
       return {
         blockId: block.id,
-        text: to_do?.rich_text.map((text) => text.plain_text).join(' '),
+        text: to_do?.rich_text.map((text) => text?.plain_text).join(' '),
         completed: to_do?.checked
       }
     })

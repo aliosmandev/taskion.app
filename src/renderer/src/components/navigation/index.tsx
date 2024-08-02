@@ -48,7 +48,7 @@ export const NavigationBar = () => {
       data?.results
         .filter((page) => page.properties.title)
         .map((page) => {
-          const title = page.properties.title.title[0].plain_text
+          const title = page.properties.title.title[0]?.plain_text
           const id = page.id
           return { title, id }
         }) ?? []
@@ -214,7 +214,7 @@ const NewPageButton = () => {
   }, [data])
 
   return (
-    <Dropdown>
+    <Dropdown classNames={{ content: 'max-h-[400px] overflow-y-auto' }}>
       <DropdownTrigger>
         <Chip color="default" radius="sm" variant="flat" size="sm" className="cursor-pointer">
           <Tooltip content="New page">
