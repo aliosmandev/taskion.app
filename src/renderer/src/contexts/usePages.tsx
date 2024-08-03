@@ -74,7 +74,7 @@ export default function PagesProvider({ children }: PagesProviderProps) {
   const handleDeletePage = (page: string) => {
     setActivePages(activePages.filter((p) => p !== page))
     if (currentPage === page) {
-      handleSelectPage(null)
+      handleSelectPage(activePages[activePages.length - 1])
     }
   }
 

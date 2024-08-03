@@ -75,6 +75,7 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
           </div>
         ) : (
           <Checkbox
+            className="mb-auto mt-0.5"
             id={blockId}
             key={blockId}
             defaultSelected={completed}

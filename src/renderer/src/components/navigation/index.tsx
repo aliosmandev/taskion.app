@@ -131,6 +131,13 @@ export const NavigationBar = () => {
               size="sm"
               onClick={() => handleSelectPage(page.id)}
               onClose={() => handleDeletePage(page.id)}
+              onMouseDown={(e) => {
+                e.stopPropagation()
+
+                if (e.button === 1) {
+                  handleDeletePage(page.id)
+                }
+              }}
             >
               {addEllipsisIfSplittable(page.title)}
             </Chip>

@@ -1,6 +1,6 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { app, BrowserWindow, ipcMain, nativeImage, shell, Tray } from 'electron'
-import { menubar } from 'menubar'
+import { Menubar, menubar } from 'menubar'
 import { join } from 'path'
 import { ICON_PATH_DEV, ICON_PATH_PROD, INDEX_HTML_PATH } from './constants'
 import { addContextmenu } from './menu'
@@ -8,8 +8,10 @@ import { addContextmenu } from './menu'
 const iconPath = app.isPackaged ? ICON_PATH_PROD : ICON_PATH_DEV
 const icon = nativeImage.createFromPath(iconPath)
 
+let mb: Menubar | null = null
+
 function createWindow(): void {
-  const mb = menubar({
+  mb = menubar({
     index: is.dev ? process.env['ELECTRON_RENDERER_URL'] : INDEX_HTML_PATH,
     tray: new Tray(icon),
     showOnAllWorkspaces: false,
@@ -32,8 +34,10 @@ function createWindow(): void {
     }
   })
 
-  mb.on('ready', () => {
-    addContextmenu(mb)
+  mb?.on('ready', () => {
+    if (mb) {
+      addContextmenu(mb)
+    }
   })
 
   app.on('open-url', (event, url) => {
@@ -41,9 +45,8 @@ function createWindow(): void {
     const authCode = new URL(url).searchParams.get('accessToken')
 
     if (authCode) {
-      mb.showWindow()
-      mb.window?.webContents.send('oauth-code', authCode)
-      ipcMain.emit('opened-url')
+      mb?.showWindow()
+      mb?.window?.webContents.send('oauth-code', authCode)
     }
   })
 }
@@ -59,7 +62,7 @@ app.whenReady().then(() => {
 
   ipcMain.on('open-url', (_, url: string) => {
     shell.openExternal(url)
-    ipcMain.emit('opened-url')
+    mb?.window?.webContents.send('opened-url')
   })
 
   createWindow()
