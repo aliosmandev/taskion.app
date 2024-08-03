@@ -5,11 +5,10 @@ import { join } from 'path'
 import { ICON_PATH_DEV, ICON_PATH_PROD, INDEX_HTML_PATH } from './constants'
 import { addContextmenu } from './menu'
 
-const iconPath = is.dev ? ICON_PATH_DEV : ICON_PATH_PROD
+const iconPath = app.isPackaged ? ICON_PATH_PROD : ICON_PATH_DEV
 const icon = nativeImage.createFromPath(iconPath)
 
 function createWindow(): void {
-  // Create the browser window.
   const mb = menubar({
     index: is.dev ? process.env['ELECTRON_RENDERER_URL'] : INDEX_HTML_PATH,
     tray: new Tray(icon),
@@ -48,11 +47,7 @@ function createWindow(): void {
   })
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  // Set app user model id for windows
   electronApp.setAppUserModelId('com.quicknotion')
 
   app.on('browser-window-created', (_, window) => {
