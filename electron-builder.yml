@@ -1,5 +1,5 @@
 appId: com.quicknotion.app
-productName: quicknotion
+productName: Quick Notion
 directories:
   buildResources: build
 files:

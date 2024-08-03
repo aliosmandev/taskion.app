@@ -1,17 +1,18 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { app, BrowserWindow, ipcMain, nativeImage, shell, Tray } from 'electron'
 import { menubar } from 'menubar'
-import path, { join } from 'path'
-import { INDEX_HTML_PATH } from './constants'
+import { join } from 'path'
+import { ICON_PATH_DEV, ICON_PATH_PROD, INDEX_HTML_PATH } from './constants'
 import { addContextmenu } from './menu'
+
+const iconPath = is.dev ? ICON_PATH_DEV : ICON_PATH_PROD
+const icon = nativeImage.createFromPath(iconPath)
 
 function createWindow(): void {
   // Create the browser window.
   const mb = menubar({
     index: is.dev ? process.env['ELECTRON_RENDERER_URL'] : INDEX_HTML_PATH,
-    tray: new Tray(
-      nativeImage.createFromPath(path.join(__dirname, '../../build/menubar-icon.png'))
-    ),
+    tray: new Tray(icon),
     showOnAllWorkspaces: false,
     browserWindow: {
       closable: true,
