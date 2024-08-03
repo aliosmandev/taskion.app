@@ -19,6 +19,7 @@ export interface NodeItemType {
 }
 
 export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
+  const [isCompleted, setIsCompleted] = useState(completed)
   const queryClient = useQueryClient()
   const { currentPage } = usePagesContext()
   const [isEditing, setIsEditing] = useState(false)
@@ -36,9 +37,10 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
   const handleUpdateTodo = async (blockId: string, checked?: boolean, content?: string) => {
     const block = data?.results.find((block) => block.id === blockId)
     if (block) {
+      setIsCompleted(checked)
       await updateBlock(blockId, {
         to_do: {
-          checked: checked ? !block.to_do?.checked : block.to_do?.checked,
+          checked: checked !== undefined ? checked : block.to_do?.checked,
           rich_text: [
             {
               text: {
@@ -61,6 +63,8 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
     deleteMutate()
   }
 
+  console.log(isCompleted)
+
   return (
     <ContextMenu>
       <ContextMenuTrigger
@@ -79,7 +83,7 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
             id={blockId}
             key={blockId}
             defaultSelected={completed}
-            onChange={() => handleUpdateTodo(blockId, true)}
+            onChange={() => handleUpdateTodo(blockId, !isCompleted)}
             lineThrough
             classNames={{
               base: 'pr-1.5'
@@ -93,7 +97,7 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
           editable={true}
           customEditing={isEditing}
           className={cn({
-            'line-through': isLoading
+            'line-through transition-all duration-200': isCompleted
           })}
         />
       </ContextMenuTrigger>
@@ -113,7 +117,6 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
     </ContextMenu>
   )
 }
-
 export const TodoLoader = () => {
   return (
     <div className="flex gap-x-2 w-full items-center py-0.5">

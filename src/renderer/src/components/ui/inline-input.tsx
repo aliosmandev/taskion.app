@@ -61,7 +61,7 @@ export const InlineInput = ({
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const TEXTAREA_WIDTH = 450 // Sabit genişlik
+  const TEXTAREA_WIDTH = 450
   const calculateRows = useCalculateRows(TEXTAREA_WIDTH)
 
   useEffect(() => {
