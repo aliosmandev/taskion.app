@@ -1,4 +1,4 @@
-import Logo from '@renderer/assets/logo.png'
+import Logo from '@renderer/assets/logo.svg'
 import { Link } from 'react-router-dom'
 
 export const PublicNavigation = () => {

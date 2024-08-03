@@ -214,7 +214,12 @@ const NewPageButton = () => {
   }, [data])
 
   return (
-    <Dropdown classNames={{ content: 'max-h-[400px] overflow-y-auto' }}>
+    <Dropdown
+      classNames={{
+        base: 'max-h-[400px] overflow-y-auto',
+        content: 'radius-lg'
+      }}
+    >
       <DropdownTrigger>
         <Chip color="default" radius="sm" variant="flat" size="sm" className="cursor-pointer">
           <Tooltip content="New page">

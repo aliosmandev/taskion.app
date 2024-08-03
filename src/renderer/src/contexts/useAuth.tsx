@@ -79,13 +79,13 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   }, [])
 
   const login = (token: string) => {
-    localStorage.setItem('token', token)
+    localStorage.setItem('access_token', token)
     setToken(token)
     setLoggedIn(true)
   }
 
   const logout = () => {
-    localStorage.removeItem('token')
+    localStorage.removeItem('access_token')
     setToken(null)
     setLoggedIn(false)
   }

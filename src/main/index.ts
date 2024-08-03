@@ -43,6 +43,7 @@ function createWindow(): void {
     if (authCode) {
       mb.showWindow()
       mb.window?.webContents.send('oauth-code', authCode)
+      ipcMain.emit('opened-url')
     }
   })
 }
@@ -58,6 +59,7 @@ app.whenReady().then(() => {
 
   ipcMain.on('open-url', (_, url: string) => {
     shell.openExternal(url)
+    ipcMain.emit('opened-url')
   })
 
   createWindow()
