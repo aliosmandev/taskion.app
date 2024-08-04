@@ -1,6 +1,6 @@
 {
   "name": "quick-notion",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "QuickNotion is a desktop application that allows you to quickly access your Notion pages.",
   "main": "./out/main/index.js",
   "author": "contact@aliosman.me",
@@ -20,6 +20,9 @@
     "build:mac": "electron-vite build && electron-builder --mac",
     "build:linux": "electron-vite build && electron-builder --linux"
   },
+  "build": {
+    "afterSign": "scripts/notarize.js"
+  },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
@@ -28,6 +31,7 @@
     "@uidotdev/usehooks": "^2.4.1",
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
+    "electron-notarize": "^1.2.2",
     "electron-updater": "^6.1.7",
     "framer-motion": "^11.3.21",
     "lucide-react": "^0.419.0",
