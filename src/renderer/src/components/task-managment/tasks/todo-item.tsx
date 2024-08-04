@@ -63,8 +63,6 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
     deleteMutate()
   }
 
-  console.log(isCompleted)
-
   return (
     <ContextMenu>
       <ContextMenuTrigger
@@ -91,7 +89,7 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
           />
         )}
         <InlineInput
-          value={text || ''}
+          defaultValue={text || ''}
           onChange={(value) => handleUpdateTodo(blockId, undefined, value)}
           placeholder="To-do"
           editable={true}

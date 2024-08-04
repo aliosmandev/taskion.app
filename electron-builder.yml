@@ -12,6 +12,8 @@ files:
 extraResources:
   - build/menubar-icon.png
   - build/menubar-icon@2x.png
+  - build/menubar-icon-dark.png
+  - build/menubar-icon-dark@2x.png
 asarUnpack:
   - resources/**
 win:

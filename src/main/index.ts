@@ -1,14 +1,13 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { app, BrowserWindow, ipcMain, nativeImage, shell, Tray } from 'electron'
+import { app, BrowserWindow, ipcMain, nativeTheme, shell, Tray } from 'electron'
 import { Menubar, menubar } from 'menubar'
 import { join } from 'path'
-import { ICON_PATH_DEV, ICON_PATH_PROD, INDEX_HTML_PATH } from './constants'
+import { INDEX_HTML_PATH } from './constants'
 import { addContextmenu } from './menu'
-
-const iconPath = app.isPackaged ? ICON_PATH_PROD : ICON_PATH_DEV
-const icon = nativeImage.createFromPath(iconPath)
+import { getTrayIcon, onThemeChange } from './menu/theme'
 
 let mb: Menubar | null = null
+const icon = getTrayIcon()
 
 function createWindow(): void {
   mb = menubar({
@@ -35,11 +34,13 @@ function createWindow(): void {
   })
 
   mb?.on('ready', () => {
-    if (mb) {
-      addContextmenu(mb)
-    }
+    addContextmenu(mb!)
+    nativeTheme.on('updated', () => {
+      onThemeChange(mb!)
+    })
   })
 
+  // set tray & dock images here
   app.on('open-url', (event, url) => {
     event.preventDefault()
     const authCode = new URL(url).searchParams.get('accessToken')
