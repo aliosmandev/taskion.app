@@ -1,9 +1,11 @@
 {
-  "name": "monorepo",
+  "name": "taskion-monorepo",
   "private": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "dev:desktop": "pnpm dev --filter=taskion",
+    "dev:landing": "pnpm dev --filter=landing",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
