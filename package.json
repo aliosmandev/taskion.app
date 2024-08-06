@@ -3,10 +3,10 @@
   "private": true,
   "scripts": {
     "dev": "turbo dev",
-    "dev:desktop": "pnpm dev --filter=taskion",
-    "dev:landing": "pnpm dev --filter=landing",
-    "build": "pnpm build --filter=landing",
-    "start": "pnpm start --filter=landing",
+    "dev:desktop": "turbo dev --filter=taskion",
+    "dev:landing": "turbo dev --filter=landing",
+    "build": "turbo build --filter=landing",
+    "start": "turbo start --filter=landing",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
