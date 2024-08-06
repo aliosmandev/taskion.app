@@ -106,7 +106,7 @@ export const NavigationBar = () => {
   return (
     <div
       className={cn(
-        "flex flex-wrap justify-between items-center border-zinc-100 dark:border-zinc-900 p-3 border-b w-full",
+        "flex flex-wrap justify-between items-center border-zinc-100 dark:border-zinc-900 p-3 border-b w-full rounded-t-lg",
         classes.container
       )}
     >

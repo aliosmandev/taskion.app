@@ -8,38 +8,14 @@ import {
 } from '@headlessui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLinks } from '@/components/NavLinks'
 import { Icon } from '@iconify/react/dist/iconify.js'
-
-function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M5 6h14M5 18h14M5 12h14"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function ChevronUpIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M17 14l-5-5-5 5"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
+import CountUp from 'react-countup'
 
 function MobileNavLink(
   props: Omit<
@@ -57,6 +33,24 @@ function MobileNavLink(
 }
 
 export function Header() {
+  const [starCount, setStarCount] = useState(0)
+
+  useEffect(() => {
+    const fetchStarCount = async () => {
+      try {
+        const response = await fetch('https://api.github.com/repos/aliosmandev/taskion.app')
+        const data = await response.json()
+        if (data.stargazers_count !== undefined) {
+          setStarCount(data.stargazers_count)
+        }
+      } catch (error) {
+        console.error('Error fetching star count:', error)
+      }
+    }
+
+    fetchStarCount()
+  }, [])
+
   return (
     <header>
       <nav>
@@ -79,9 +73,9 @@ export function Header() {
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="h-6 w-6" />
+                        <Icon icon="mdi:chevron-up" className="h-6 w-6" />
                       ) : (
-                        <MenuIcon className="h-6 w-6" />
+                        <Icon icon="mdi:menu" className="h-6 w-6" />
                       )
                     }
                   </PopoverButton>
@@ -137,7 +131,7 @@ export function Header() {
               className="hidden items-center gap-2 lg:flex"
             >
               <Icon icon="bi:github" />
-              10+
+              <CountUp className='font-medium' start={1} end={starCount} suffix='+' />
             </Button>
             <Button
               href="https://github.com/aliosmandev/ui.taskion.app"

@@ -43,7 +43,7 @@ export const TodoItem = ({ blockId, text, completed }: NodeItemType) => {
       />
       <InlineInput
         defaultValue={text || ''}
-        onChange={(value) => handleUpdateTodo(blockId, undefined, value)}
+        onChange={(value) => handleUpdateTodo(blockId, isCompleted, value)}
         placeholder="To-do"
         editable={true}
         customEditing={isEditing}
