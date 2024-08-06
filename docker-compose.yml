@@ -12,7 +12,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.postiva.entrypoints=websecure"
       - "traefik.http.routers.postiva.tls.certResolver=letsencrypt"
-      - "traefik.http.routers.postiva.rule=Host(`postiva.app`) || Host(`dash.postiva.app`)"
+      - "traefik.http.routers.postiva.rule=Host(`taskion.app`)"
       - "traefik.http.services.postiva.loadbalancer.server.port=4000"
     ports:
       - 4000:4000
