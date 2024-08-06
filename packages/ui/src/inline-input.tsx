@@ -6,7 +6,6 @@ export interface InlineInputProps {
   onChange: (value: string) => void
   editable?: boolean
   placeholder?: string
-  endContent?: React.ReactNode
   className?: string
   customEditing?: boolean
 }
@@ -15,7 +14,6 @@ export const InlineInput = ({
   defaultValue,
   onChange,
   placeholder,
-  endContent,
   className,
   customEditing = false
 }: InlineInputProps) => {
@@ -91,16 +89,12 @@ export const InlineInput = ({
         className={cn(
           "cursor-pointer hover:bg-default-100 p-1 mt-[3px] rounded-md transition-all duration-200 w-full inline-flex items-center justify-between group inline-input group-data-[state='open']:bg-gray-100 dark:group-data-[state='open']:bg-zinc-900 text-sm outline-0 dark:outline-zinc-700 focus:bg-gray-100 dark:focus:bg-zinc-900",
           !displayValue && placeholder && 'text-default-500',
-          endContent && 'pr-1.5',
           className
         )}
         onClick={handleEdit}
         data-placeholder={placeholder}
       >
         {displayValue}
-        <div className="flex items-center justify-center group-hover:opacity-100 opacity-0 transition-all duration-100">
-          {endContent}
-        </div>
       </div>
       {!displayValue && !isEditing && placeholder && (
         <div
