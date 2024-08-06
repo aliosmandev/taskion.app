@@ -4,8 +4,6 @@ services:
       context: .
       dockerfile: ./apps/web/Dockerfile
     restart: always
-    env_file:
-      - .env.production
     networks:
       - dokploy-network
     labels:
