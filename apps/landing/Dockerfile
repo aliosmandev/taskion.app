@@ -17,9 +17,9 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=installer /app/ .
 COPY --from=pruner /app/out/full/ .
-RUN export COREPACK_ENABLE_STRICT=0 && pnpm build:prod --filter=landing
+RUN export COREPACK_ENABLE_STRICT=0 && pnpm build --filter=landing
 
 FROM base AS runner
 WORKDIR /app
 COPY --from=builder /app/ .
-CMD export COREPACK_ENABLE_STRICT=0 && pnpm start:prod --filter=landing
+CMD export COREPACK_ENABLE_STRICT=0 && pnpm start --filter=landing
