@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start --port=4000",
+    "start": "next start --port=7000",
     "lint": "next lint"
   },
   "browserslist": "defaults, not ie <= 11",

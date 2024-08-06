@@ -11,9 +11,9 @@ services:
       - "traefik.http.routers.postiva.entrypoints=websecure"
       - "traefik.http.routers.postiva.tls.certResolver=letsencrypt"
       - "traefik.http.routers.postiva.rule=Host(`taskion.app`)"
-      - "traefik.http.services.postiva.loadbalancer.server.port=4000"
+      - "traefik.http.services.postiva.loadbalancer.server.port=7000"
     ports:
-      - 4000:4000
+      - 7000:7000
 
 networks:
   dokploy-network:
