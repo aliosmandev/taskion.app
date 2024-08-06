@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Taskion</title>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+      default-src 'self'; 
+      script-src 'self'; 
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+      img-src 'self' data: https://s3-us-west-2.amazonaws.com/public.notion-static.com/fe9945fe-63f2-4e68-8fde-b01e59706af5/106361546.jpeg; 
+      connect-src 'self' http://localhost:8080 https://api.taskion.app; 
+      font-src 'self' https://fonts.gstatic.com"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+    />
+  </head>
+
+  <body class="text-foreground bg-background font-inter h-full">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
