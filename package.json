@@ -6,6 +6,8 @@
     "dev": "turbo dev",
     "dev:desktop": "pnpm dev --filter=taskion",
     "dev:landing": "pnpm dev --filter=landing",
+    "build:prod": "pnpm build --filter=landing",
+    "start:prod": "pnpm start --filter=landing",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
