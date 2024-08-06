@@ -31,7 +31,7 @@ export function Footer() {
               <div className="ml-4">
                 <p className="text-base font-semibold">Taskion</p>
                 <p className="text-sm">
-                Manage your tasks simply and intuitively with Taskion.
+                Manage tasks simply with Taskion.
                 </p>
               </div>
             </div>
