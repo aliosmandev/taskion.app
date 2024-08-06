@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./apps/web/Dockerfile
+      dockerfile: ./apps/landing/Dockerfile
     restart: always
     networks:
       - dokploy-network
