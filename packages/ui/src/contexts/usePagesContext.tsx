@@ -27,6 +27,7 @@ interface PagesContextProps {
   handleUpdateBlock: (blockId: string, checked?: boolean, content?: string) => void;
   handleDeleteBlock: (blockId: string) => void;
   handleNewBlock: (text: string) => void;
+  handleDeSelectPage: (id: string) => void;
 }
 
 const PagesContext = createContext<PagesContextProps | undefined>(undefined);
@@ -59,7 +60,18 @@ const PagesProvider = ({ children }: { children: ReactNode }) => {
     setActivePages((pages) => pages.filter((page) => page !== id));
     setPages((prevPages) => prevPages.filter((page) => page.id !== id));
     setBlocks((prevBlocks) => prevBlocks.filter((block) => block.pageId !== id));
+    if (currentPage === id && pages.length > 0) {
+      setCurrentPage(pages[0].id); // Set the current page to the first available page
+    } else if (pages.length === 0) {
+      setCurrentPage(''); // Set current page to empty if no pages left
+    }
   };
+
+  const handleDeSelectPage = (id: string) => {
+    const newActivePages = activePages.filter((page) => page !== id);
+    setActivePages(newActivePages);
+    setCurrentPage(newActivePages[newActivePages.length - 1]);
+  }
 
   const handleSelectPage = (id: string) => setCurrentPage(id);
 
@@ -81,9 +93,11 @@ const PagesProvider = ({ children }: { children: ReactNode }) => {
   const disabledForwardPage = activePages.indexOf(currentPage) >= activePages.length - 1;
 
   const handleNewPage = (title: string) => {
-    const newPage: Page = { id: (pages.length + 1).toString(), title };
+    const newPageId = (pages.length + 1).toString();
+    const newPage: Page = { id: newPageId, title };
     setPages((prevPages) => [...prevPages, newPage]);
     setActivePages((prevActivePages) => [...prevActivePages, newPage.id]);
+    setCurrentPage(newPage.id); // Set the new page as the current page
   };
 
   const handleUpdateBlock = (blockId: string, checked?: boolean, content?: string) => {
@@ -131,6 +145,7 @@ const PagesProvider = ({ children }: { children: ReactNode }) => {
         handleUpdateBlock,
         handleDeleteBlock,
         handleNewBlock,
+        handleDeSelectPage,
       }}
     >
       {children}

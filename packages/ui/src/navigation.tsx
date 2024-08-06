@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { usePagesContext } from "./contexts/usePagesContext";
-//   import { UserProfile } from './user-profile'
 
 interface PageType {
   title: string;
@@ -52,7 +51,7 @@ export const NavigationBar = () => {
     disabledForwardPage,
     activePages,
     pages,
-    handleNewPage,
+    handleDeSelectPage
   } = usePagesContext();
   const [window] = useWindowScroll();
 
@@ -146,7 +145,7 @@ export const NavigationBar = () => {
               variant="flat"
               size="sm"
               onClick={() => handleSelectPage(page.id)}
-              onClose={() => handleDeletePage(page.id)}
+              onClose={() => handleDeSelectPage(page.id)}
               onMouseDown={(e) => {
                 e.stopPropagation();
 
@@ -223,15 +222,7 @@ const RefreshPages = () => {
 };
 
 const NewPageButton = () => {
-  const { handleNewPage, pages } = usePagesContext();
-
-  const computedPages = useMemo(() => {
-    return pages.filter((page) => page?.title).map((page) => {
-      const title = page?.title;
-      const id = page.id;
-      return { title, id };
-    }) as PageType[];
-  }, []);
+  const { handleSelectPage, pages } = usePagesContext();
 
   return (
     <Dropdown>
@@ -249,12 +240,12 @@ const NewPageButton = () => {
         </Chip>
       </DropdownTrigger>
       <DropdownMenu>
-        {computedPages?.map((page) => (
+        {pages?.map((page) => (
           <DropdownItem
             key={page.id}
             className="text-xs"
-            onSelect={() => handleNewPage(page.title)}
-            onClick={() => handleNewPage(page.title)}
+            onSelect={() => handleSelectPage(page.id)}
+            onClick={() => handleSelectPage(page.id)}
           >
             {page.title}
           </DropdownItem>
