@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import clsx from 'clsx'
 
 import '@/styles/tailwind.css'
+import { NextUIProvider } from '@nextui-org/react'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,7 +27,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={clsx('bg-gray-50 antialiased', inter.variable)}>
-      <body>{children}</body>
+      <body>
+        <NextUIProvider>
+          {children}
+        </NextUIProvider>
+      </body>
     </html>
   )
 }

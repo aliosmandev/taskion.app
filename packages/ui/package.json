@@ -3,17 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./button": "./src/button.tsx",
-    "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./navigation": "./src/navigation.tsx",
+    "./inline-input": "./src/inline-input.tsx",
+    "./todo-item": "./src/todo-item.tsx",
+    "./pages-context": "./src/contexts/usePagesContext.tsx",
+    "./page-renderer": "./src/page-renderer.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component"
   },
   "devDependencies": {
-    "custom-eslint-config": "workspace:*",
-    "custom-typescript-config": "workspace:*",
     "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",
@@ -23,7 +23,11 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@nextui-org/chip": "^2.0.32",
     "@nextui-org/react": "^2.4.6",
+    "@nextui-org/system": "^2.2.5",
+    "@nextui-org/theme": "^2.2.9",
+    "framer-motion": "^11.3.21",
     "lucide-react": "^0.419.0",
     "react": "^18.2.0"
   }

@@ -1,9 +1,14 @@
 import headlessuiPlugin from '@headlessui/tailwindcss'
 import formsPlugin from '@tailwindcss/forms'
 import { type Config } from 'tailwindcss'
+import { nextui } from '@nextui-org/react'
 
 export default {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    '../../packages/ui/node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
+    '../../packages/ui/src/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -65,5 +70,5 @@ export default {
       },
     },
   },
-  plugins: [formsPlugin, headlessuiPlugin],
+  plugins: [formsPlugin, headlessuiPlugin, nextui()],
 } satisfies Config

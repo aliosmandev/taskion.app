@@ -5,7 +5,7 @@ import {
   ContextMenuItem,
   ContextMenuTrigger
 } from '@renderer/components/ui/context-menu'
-import { InlineInput } from '@renderer/components/ui/inline-input'
+import { InlineInput } from 'ui/src/inline-input'
 import { usePagesContext } from '@renderer/contexts/usePages'
 import { deleteBlock, getBlocks, updateBlock } from '@renderer/libs/api/blocks'
 import { Loader2, PencilIcon, TrashIcon } from 'lucide-react'

@@ -15,6 +15,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { usePagesContext } from "./contexts/usePagesContext";
 //   import { UserProfile } from './user-profile'
 
 interface PageType {
@@ -22,48 +23,12 @@ interface PageType {
   id: string;
 }
 
-const DUMMY_PAGES = [
-  { id: "1", properties: { title: { title: [{ plain_text: "Page 1" }] } } },
-  { id: "2", properties: { title: { title: [{ plain_text: "Page 2" }] } } },
-  { id: "3", properties: { title: { title: [{ plain_text: "Page 3" }] } } },
-  { id: "4", properties: { title: { title: [{ plain_text: "Page 4" }] } } },
-  { id: "5", properties: { title: { title: [{ plain_text: "Page 5" }] } } },
-];
-
 const addEllipsisIfSplittable = (text: string) => {
   const parts = text?.split(" ");
   return parts?.length > 1 ? parts[0] + ".." : parts?.[0];
 };
 
 const useAuthContext = () => ({ loggedIn: true });
-const usePagesContext = () => {
-  const [currentPage, setCurrentPage] = useState<string>("1");
-  const [activePages, setActivePages] = useState<string[]>([
-    "1",
-    "2",
-    "3",
-    "4",
-  ]);
-
-  const handleDeletePage = (id: string) =>
-    setActivePages((pages) => pages.filter((page) => page !== id));
-  const handleSelectPage = (id: string) => setCurrentPage(id);
-  const handleBackPage = () => {};
-  const handleForwardPage = () => {};
-  const disabledBackPage = false;
-  const disabledForwardPage = false;
-
-  return {
-    handleDeletePage,
-    handleSelectPage,
-    currentPage,
-    handleBackPage,
-    handleForwardPage,
-    disabledBackPage,
-    disabledForwardPage,
-    activePages,
-  };
-};
 
 const useWindowScroll = () => {
   const [scroll, setScroll] = useState({ y: 0 });
@@ -86,18 +51,14 @@ export const NavigationBar = () => {
     disabledBackPage,
     disabledForwardPage,
     activePages,
+    pages,
+    handleNewPage,
   } = usePagesContext();
   const [window] = useWindowScroll();
 
   const computedPages = useMemo(() => {
-    return (
-      DUMMY_PAGES.filter((page) => page.properties.title).map((page) => {
-        const title = page.properties.title.title[0]?.plain_text;
-        const id = page.id;
-        return { title, id };
-      }) ?? []
-    );
-  }, []);
+    return pages.map((page) => ({ title: page.title, id: page.id })) ?? [];
+  }, [pages]);
 
   const [shortPages, longPages] = useMemo(() => {
     let shortPages: PageType[] = [];
@@ -154,17 +115,17 @@ export const NavigationBar = () => {
         <Tooltip content="Previous page">
           <ChevronLeft
             className={cn("cursor-pointer w-4 h-4 text-zinc-500", {
-              "opacity-50": disabledForwardPage,
+              "opacity-50": disabledBackPage,
             })}
-            onClick={handleForwardPage}
+            onClick={handleBackPage}
           />
         </Tooltip>
         <Tooltip content="Next page">
           <ChevronRight
             className={cn("cursor-pointer w-4 h-4 text-zinc-500", {
-              "opacity-50": disabledBackPage,
+              "opacity-50": disabledForwardPage,
             })}
-            onClick={handleBackPage}
+            onClick={handleForwardPage}
           />
         </Tooltip>
       </div>
@@ -180,7 +141,6 @@ export const NavigationBar = () => {
             <Chip
               className="cursor-pointer select-none"
               key={page.id}
-              // color={page.id === currentPage ? 'primary' : 'default'}
               color={page.id === currentPage ? "primary" : "default"}
               radius="sm"
               variant="flat"
@@ -235,8 +195,6 @@ export const NavigationBar = () => {
 };
 
 const RefreshPages = () => {
-  const { loggedIn } = useAuthContext();
-  const { currentPage } = usePagesContext();
   const [isFetching, setIsFetching] = useState(false);
 
   const handleRefresh = () => {
@@ -265,23 +223,18 @@ const RefreshPages = () => {
 };
 
 const NewPageButton = () => {
-  const { handleNewPage } = usePagesContext();
+  const { handleNewPage, pages } = usePagesContext();
 
   const computedPages = useMemo(() => {
-    return DUMMY_PAGES.filter((page) => page?.properties?.title).map((page) => {
-      const title = page?.properties?.title?.title[0]?.plain_text;
+    return pages.filter((page) => page?.title).map((page) => {
+      const title = page?.title;
       const id = page.id;
       return { title, id };
     }) as PageType[];
   }, []);
 
   return (
-    <Dropdown
-      classNames={{
-        base: "max-h-[400px] overflow-y-auto",
-        content: "radius-lg",
-      }}
-    >
+    <Dropdown>
       <DropdownTrigger>
         <Chip
           color="default"
@@ -300,8 +253,8 @@ const NewPageButton = () => {
           <DropdownItem
             key={page.id}
             className="text-xs"
-            onSelect={() => handleNewPage(page.id)}
-            onClick={() => handleNewPage(page.id)}
+            onSelect={() => handleNewPage(page.title)}
+            onClick={() => handleNewPage(page.title)}
           >
             {page.title}
           </DropdownItem>

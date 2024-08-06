@@ -51,7 +51,6 @@ export function AppScreen({
 }: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <div className={clsx('flex flex-col', className)} {...props}>
-      <div className="flex justify-between">Header</div>
       {children}
     </div>
   )
@@ -62,7 +61,7 @@ AppScreen.Header = forwardRef<
   { children: React.ReactNode }
 >(function AppScreenHeader({ children }, ref) {
   return (
-    <div ref={ref} className="mt-6 px-4 text-white">
+    <div ref={ref} className="">
       {children}
     </div>
   )
@@ -95,7 +94,7 @@ AppScreen.Body = forwardRef<
   { className?: string; children: React.ReactNode }
 >(function AppScreenBody({ children, className }, ref) {
   return (
-    <div ref={ref} className={clsx('mt-6 flex-auto', className)}>
+    <div ref={ref} className={clsx('mt-2 px-3 flex-auto', className)}>
       {children}
     </div>
   )
