@@ -1,81 +1,41 @@
-# Turborepo starter
+# Taskion UI
 
-This is an official starter Turborepo.
+Taskion UI is a lightweight and intuitive task management user interface built with modern web technologies. It is designed to integrate seamlessly with Taskion's Notion-based backend and provide users with a smooth and efficient task management experience.
 
-## Using this example
+## Motivation
 
-Run the following command:
+The motivation behind Taskion UI is to create a simple and user-friendly interface for managing tasks and notes. By utilizing powerful frontend technologies, Taskion UI aims to deliver a responsive and visually appealing application that complements the Taskion backend. The goal is to provide users with a cohesive and enjoyable task management experience.
 
-```sh
-npx create-turbo@latest
-```
+## Tech Stack
 
-## What's inside?
+- **Electron**: Used to build cross-platform desktop applications with JavaScript, HTML, and CSS.
+- **Electron-Vite**: Enables fast development and build processes for Electron applications.
+- **Electron-Builder**: A complete solution to package and build Electron apps.
+- **React**: JavaScript library for building user interfaces.
+- **TailwindCSS**: A utility-first CSS framework for styling the application.
+- **NextUI**: A modern and customizable component library for React applications.
 
-This Turborepo includes the following packages/apps:
+## Features
 
-### Apps and Packages
+- [x] Cross-platform support (Windows, macOS, Linux)
+- [x] Responsive design with TailwindCSS
+- [x] Modern UI components with NextUI
+- [x] Seamless integration with Taskion backend
+- [x] Task creation, editing, and deletion
+- [x] Real-time task updates
+- [ ] Drag and drop task reordering
+- [ ] Reinstall new pages from Notion
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Tasks
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- [x] Set up Electron environment
+- [x] Configure Electron-Vite for fast development
+- [x] Implement Electron-Builder for packaging
+- [x] Develop UI with React and NextUI components
+- [x] Style the application using TailwindCSS
+- [x] Integrate with Taskion backend API
+- [x] Add menubar window
+- [ ] Ensure real-time updates and responsiveness
+---
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Feel free to contribute and improve Taskion UI by submitting issues and pull requests. Your feedback and contributions are welcome!
