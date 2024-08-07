@@ -5,7 +5,7 @@ export const features = [
       name: 'Manage tasks seamlessly',
       description:
         'Easily add, edit, and track your tasks with an intuitive interface.',
-      icon: <Icon icon="streamline:task-list" className="w-8 h-8" />,
+      icon: <Icon icon="lucide:list-todo" className="w-8 h-8" />,
     },
     {
       name: 'Sync with Notion',
@@ -23,7 +23,7 @@ export const features = [
       name: 'Quick access from menubar',
       description:
         'Manage your tasks swiftly directly from the menubar for maximum efficiency.',
-      icon: <Icon icon="codicon:layout-menubar" className="w-8 h-8" />,
+      icon: <Icon icon="ci:bar-top" className="w-8 h-8" />,
     },
     {
       name: 'Secure and private',

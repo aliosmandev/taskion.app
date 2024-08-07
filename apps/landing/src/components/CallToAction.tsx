@@ -12,9 +12,9 @@ export function CallToAction() {
         <CircleBackground color="#fff" className="animate-spin-slower" />
       </div>
       <Container className="relative">
-        <div className="mx-auto max-w-md sm:text-center">
+        <div className="mx-auto max-w-sm sm:text-center">
           <h2 className="text-3xl font-medium tracking-tight text-white sm:text-4xl">
-            Manage your tasks now
+          Manage your tasks from menu bar
           </h2>
           <p className="mt-4 text-lg text-gray-300">
             Log in with your Notion account and start managing your tasks instantly. Simplify your workflow with Taskion.

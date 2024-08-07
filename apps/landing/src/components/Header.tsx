@@ -125,7 +125,7 @@ export function Header() {
               )}
             </Popover>
             <Button
-              href="https://github.com/aliosmandev/ui.taskion.app"
+              href="https://github.com/aliosmandev/taskion.app"
               target="_blank"
               variant="outline"
               className="hidden items-center gap-2 lg:flex"
@@ -134,7 +134,7 @@ export function Header() {
               <CountUp className='font-medium' start={1} end={starCount} suffix='+' />
             </Button>
             <Button
-              href="https://github.com/aliosmandev/ui.taskion.app"
+              href="https://github.com/aliosmandev/taskion.app/releases"
               target="_blank"
               className="hidden lg:block"
             >

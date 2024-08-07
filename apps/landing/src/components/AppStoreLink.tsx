@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 export function AppStoreLink({
   color = 'black',
@@ -8,7 +8,7 @@ export function AppStoreLink({
 }) {
   return (
     <Link
-      href="#"
+      href="https://github.com/aliosmandev/taskion.app/releases"
       aria-label="Download on the App Store"
       className={clsx(
         'rounded-lg transition-colors',

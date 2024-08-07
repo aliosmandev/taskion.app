@@ -40,14 +40,16 @@ export const NewTodo = () => {
         }}
         isDisabled={isLoading}
         endContent={
-          isLoading ? (
-            <Loader2Icon className="w-4 h-4 text-default-40 flex-shrink-0 animate-spin" />
-          ) : (
-            <PlusIcon
-              className="w-4 h-4 text-default-400 flex-shrink-0 cursor-pointer"
-              onClick={handleSubmit}
-            />
-          )
+          <div className='flex items-center mr-1.5'>
+            {isLoading ? (
+              <Loader2Icon className="w-4 h-4 text-default-40 flex-shrink-0 animate-spin" />
+            ) : (
+              <PlusIcon
+                className="w-4 h-4 text-default-400 flex-shrink-0 cursor-pointer"
+                onClick={handleSubmit}
+              />
+            )}
+          </div>
         }
       />
     </div>
