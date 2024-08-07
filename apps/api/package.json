@@ -1,0 +1,8 @@
+{
+    "name": "api",
+    "private": true,
+    "scripts": {
+      "dev": "make dev"
+    }
+  }
+  
