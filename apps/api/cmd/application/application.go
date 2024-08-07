@@ -2,9 +2,11 @@ package application
 
 import (
 	"os"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 
 	authRoutes "taskmanager/modules/auth"
@@ -19,7 +21,10 @@ func Start() {
 		AllowOrigins:     os.Getenv("UI_URL"),
 	}))
 	app.Use(recover.New())
-
+	app.Use(limiter.New(limiter.Config{
+		Max:        20,
+		Expiration: 30 * time.Second,
+	}))
 	authGroup := app.Group("/auth")
 	authRoutes.InitRouter(authGroup)
 
