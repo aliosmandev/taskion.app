@@ -1,7 +1,7 @@
 import { Checkbox, cn, Skeleton } from '@nextui-org/react'
-import { InlineInput } from './inline-input'
 import { useState } from 'react'
 import { usePagesContext } from './contexts/usePagesContext'
+import { InlineInput } from './inline-input'
 
 export interface NodeItemType {
   blockId: string

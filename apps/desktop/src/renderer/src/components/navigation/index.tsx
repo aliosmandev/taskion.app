@@ -224,8 +224,8 @@ const NewPageButton = () => {
   return (
     <Dropdown
       classNames={{
-        base: 'max-h-[400px] overflow-y-auto',
-        content: 'radius-lg'
+        base: 'max-h-[400px] overflow-y-auto rounded-lg',
+        content: 'rounded-lg'
       }}
     >
       <DropdownTrigger>

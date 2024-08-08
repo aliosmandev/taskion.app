@@ -5,12 +5,12 @@ import {
   ContextMenuItem,
   ContextMenuTrigger
 } from '@renderer/components/ui/context-menu'
-import { InlineInput } from 'ui/src/inline-input'
 import { usePagesContext } from '@renderer/contexts/usePages'
 import { deleteBlock, getBlocks, updateBlock } from '@renderer/libs/api/blocks'
 import { Loader2, PencilIcon, TrashIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { InlineInput } from 'ui/inline-input'
 
 export interface NodeItemType {
   blockId: string
